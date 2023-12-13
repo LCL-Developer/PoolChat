@@ -17,9 +17,15 @@ public interface UrlDiscover {
     @Nullable
     Map<String, UrlInfo> getUrlContentMap(String content);
 
+    /**
+     * 通过url解析对应的信息（标题，描述，网站LOGO）
+     */
     @Nullable
     UrlInfo getContent(String url);
 
+    /**
+     * 细化
+     */
     @Nullable
     String getTitle(Document document);
 

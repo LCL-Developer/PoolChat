@@ -60,12 +60,18 @@ public interface UserService {
     void black(BlackReq req);
 
     /**
-     * 获取用户汇总信息
+     * （懒加载）获取用户汇总信息
      *
      * @param req
-     * @return
+     * @return {@link List}<{@link SummeryInfoDTO}>
      */
     List<SummeryInfoDTO> getSummeryUserInfo(SummeryInfoReq req);
 
+    /**
+     * （懒加载）获取徽章信息
+     *
+     * @param req
+     * @return {@link List}<{@link ItemInfoDTO}>
+     */
     List<ItemInfoDTO> getItemInfo(ItemInfoReq req);
 }

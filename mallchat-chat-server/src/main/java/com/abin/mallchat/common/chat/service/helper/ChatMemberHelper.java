@@ -12,6 +12,9 @@ import com.abin.mallchat.common.user.domain.enums.ChatActiveStatusEnum;
 public class ChatMemberHelper {
     private static final String SEPARATOR = "_";
 
+    /**
+     * 解析成员列表的游标
+     */
     public static Pair<ChatActiveStatusEnum, String> getCursorPair(String cursor) {
         ChatActiveStatusEnum activeStatusEnum = ChatActiveStatusEnum.ONLINE;
         String timeCursor = null;

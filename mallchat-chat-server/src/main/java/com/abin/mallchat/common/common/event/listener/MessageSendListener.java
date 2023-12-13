@@ -72,6 +72,10 @@ public class MessageSendListener {
         mqProducer.sendSecureMsg(MQConstant.SEND_MSG_TOPIC, new MsgSendMessageDTO(msgId), msgId);
     }
 
+    /**
+     * openAI 机器人被@后，进行消息回复
+     * @param event
+     */
     @TransactionalEventListener(classes = MessageSendEvent.class, fallbackExecution = true)
     public void handlerMsg(@NotNull MessageSendEvent event) {
         Message message = messageDao.getById(event.getMsgId());

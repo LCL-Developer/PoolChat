@@ -48,9 +48,10 @@ import java.util.stream.Collectors;
 import static com.abin.mallchat.common.user.domain.enums.ApplyStatusEnum.WAIT_APPROVAL;
 
 /**
- * @author : limeng
- * @description : 好友
- * @date : 2023/07/19
+ * Description: 好友服务类
+ *
+ * @author <a href="https://github.com/LCL-Developer">lcl</a>
+ * @since 2023/10/23
  */
 @Slf4j
 @Service
@@ -74,7 +75,6 @@ public class FriendServiceImpl implements FriendService {
     private RoomFriendDao roomFriendDao;
 
     /**
-     * 检查
      * 检查是否是自己好友
      *
      * @param uid     uid

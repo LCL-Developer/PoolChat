@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 
 /**
  * Description: redis string类型的批量缓存框架
- * Author: <a href="https://github.com/zongzibinbin">abin</a>
- * Date: 2023-06-10
+ * Author: <a href="https://github.com/LCL-Developer">lcl</a>
+ * Date: 2023-10-31
  */
 public abstract class AbstractRedisStringCache<IN, OUT> implements BatchCache<IN, OUT> {
 
@@ -22,10 +22,25 @@ public abstract class AbstractRedisStringCache<IN, OUT> implements BatchCache<IN
         this.outClass = (Class<OUT>) genericSuperclass.getActualTypeArguments()[1];
     }
 
+    /**
+     * 子类实现：redis中的key值的拼装
+     *
+     * @return {@link String}
+     */
     protected abstract String getKey(IN req);
 
+    /**
+     * 子类实现：缓存的时间
+     *
+     * @return {@link Long}
+     */
     protected abstract Long getExpireSeconds();
 
+    /**
+     * 子类实现：缓存中不存在，数据源获取策略
+     *
+     * @return Map<IN, OUT>
+     */
     protected abstract Map<IN, OUT> load(List<IN> req);
 
     @Override

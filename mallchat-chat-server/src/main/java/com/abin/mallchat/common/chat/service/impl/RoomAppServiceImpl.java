@@ -336,11 +336,15 @@ public class RoomAppServiceImpl implements RoomAppService {
                 .collect(Collectors.toMap(Pair::getKey, Pair::getValue));
     }
 
+    /**
+     * 获取好友房间信息
+     */
     private Map<Long, User> getFriendRoomMap(List<Long> roomIds, Long uid) {
         if (CollectionUtil.isEmpty(roomIds)) {
             return new HashMap<>();
         }
         Map<Long, RoomFriend> roomFriendMap = roomFriendCache.getBatch(roomIds);
+        //获取我的好友id
         Set<Long> friendUidSet = ChatAdapter.getFriendUidSet(roomFriendMap.values(), uid);
         Map<Long, User> userBatch = userInfoCache.getBatch(new ArrayList<>(friendUidSet));
         return roomFriendMap.values()

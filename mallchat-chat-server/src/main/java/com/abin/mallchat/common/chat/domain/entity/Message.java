@@ -74,7 +74,7 @@ public class Message implements Serializable {
     private Integer gapCount;
 
     /**
-     * 消息类型 1正常文本 2.撤回消息
+     * 消息类型 1正常文本 2.撤回消息 。。。
      *
      * @see com.abin.mallchat.common.chat.domain.enums.MessageTypeEnum
      */

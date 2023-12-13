@@ -13,9 +13,10 @@ import com.abin.mallchat.common.user.domain.vo.response.friend.FriendResp;
 import com.abin.mallchat.common.user.domain.vo.response.friend.FriendUnreadResp;
 
 /**
- * @author : limeng
- * @description : 好友
- * @date : 2023/07/19
+ * Description: 好友服务类
+ *
+ * @author <a href="https://github.com/LCL-Developer">lcl</a>
+ * @since 2023/10/23
  */
 public interface FriendService {
 

@@ -58,7 +58,7 @@ public class WxPortalController {
             log.error("callBack error", e);
         }
         RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("https://mp.weixin.qq.com/s/m1SRsBG96kLJW5mPe4AVGA");
+        redirectView.setUrl("https://github.com/LCL-Developer");
         return redirectView;
     }
 

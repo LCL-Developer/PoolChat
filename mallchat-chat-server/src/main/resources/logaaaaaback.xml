@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <!--日志路径 -->
+<!--
+    &lt;!&ndash;日志路径 &ndash;&gt;
     <property name="LOG_PATH" value="/data/logs/mallchat-chat-server"/>
     <property name="LOG_FILE" value="mallchat-chat-server"/>
-    <!-- 格式化-->
+    &lt;!&ndash; 格式化&ndash;&gt;
     <property name="CONSOLE_LOG_PATTERN"
               value="|%level|%d{yyyy-MM-dd HH:mm:ss.SSS}|%thread|%X{tid}|uid=%X{uid}|%msg|%X{callChain}%n"/>
 
@@ -15,7 +16,7 @@
             <pattern>${CONSOLE_LOG_PATTERN}</pattern>
         </encoder>
     </appender>
-    <!-- 全部日志的配置-->
+    &lt;!&ndash; 全部日志的配置&ndash;&gt;
     <appender name="fileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_PATH}/${LOG_FILE}.log</file>
         <append>true</append>
@@ -23,18 +24,18 @@
             <pattern>${CONSOLE_LOG_PATTERN}</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- 按天生成日志文件 -->
+            &lt;!&ndash; 按天生成日志文件 &ndash;&gt;
             <fileNamePattern>
                 ${LOG_PATH}/archived/${LOG_FILE}.%d{dd-MM-yyyy}.log
             </fileNamePattern>
-            <!--保留天数-->
+            &lt;!&ndash;保留天数&ndash;&gt;
             <maxHistory>30</maxHistory>
-            <!--单个文件的大小-->
+            &lt;!&ndash;单个文件的大小&ndash;&gt;
             <totalSizeCap>5GB</totalSizeCap>
         </rollingPolicy>
 
     </appender>
-    <!-- error日志的配置-->
+    &lt;!&ndash; error日志的配置&ndash;&gt;
     <appender name="fileError" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>ERROR</level>
@@ -56,11 +57,12 @@
     </appender>
 
     <root level="info">
-        <!--文件输出-->
+        &lt;!&ndash;文件输出&ndash;&gt;
         <appender-ref ref="fileAppender"/>
         <appender-ref ref="fileError"/>
-        <!--制台输出-->
+        &lt;!&ndash;制台输出&ndash;&gt;
         <appender-ref ref="STDOUT"/>
     </root>
+-->
 
 </configuration>

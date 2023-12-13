@@ -21,6 +21,7 @@ import com.abin.mallchat.common.chat.service.adapter.MemberAdapter;
 import com.abin.mallchat.common.chat.service.adapter.MessageAdapter;
 import com.abin.mallchat.common.chat.service.adapter.RoomAdapter;
 import com.abin.mallchat.common.chat.service.cache.RoomCache;
+import com.abin.mallchat.common.chat.service.cache.RoomFriendCache;
 import com.abin.mallchat.common.chat.service.cache.RoomGroupCache;
 import com.abin.mallchat.common.chat.service.helper.ChatMemberHelper;
 import com.abin.mallchat.common.chat.service.strategy.mark.AbstractMsgMarkStrategy;
@@ -96,6 +97,8 @@ public class ChatServiceImpl implements ChatService {
     private RoomGroupCache roomGroupCache;
     @Autowired
     private RoomGroupDao roomGroupDao;
+    @Autowired
+    private RoomFriendCache roomFriendCache;
 
     /**
      * 发送消息
@@ -281,6 +284,8 @@ public class ChatServiceImpl implements ChatService {
             update.setReadTime(new Date());
             contactDao.updateById(update);
         } else {
+          /*  待测试
+            validateRoomIdByUid(uid, request);*/
             Contact insert = new Contact();
             insert.setUid(uid);
             insert.setRoomId(request.getRoomId());
@@ -288,6 +293,22 @@ public class ChatServiceImpl implements ChatService {
             contactDao.save(insert);
         }
     }
+/*
+    private void validateRoomIdByUid(Long uid, ChatMessageMemberReq request) {
+        Room room = roomCache.get(request.getRoomId());
+        AssertUtil.isNotEmpty(room, "房间号有误");
+        if (room.isRoomGroup()) {
+            RoomGroup roomGroup = roomGroupCache.get(request.getRoomId());
+            AssertUtil.isNotEmpty(roomGroup, "房间号有误");
+            GroupMember self = groupMemberDao.getMember(roomGroup.getId(), uid);
+            AssertUtil.isNotEmpty(self, "您不是群成员");
+        }
+        if (room.isRoomFriend()) {
+            RoomFriend friendRoom = roomFriendCache.get(request.getRoomId());
+            AssertUtil.isNotEmpty(friendRoom, "房间号有误");
+            AssertUtil.isTrue(friendRoom.getUid1().equals(uid) || friendRoom.getUid2().equals(uid), "他不是您的好友");
+        }
+    }*/
 
     private void checkRecall(Long uid, Message message) {
         AssertUtil.isNotEmpty(message, "消息有误");
@@ -296,6 +317,7 @@ public class ChatServiceImpl implements ChatService {
         if (hasPower) {
             return;
         }
+        //AssertUtil.equal(uid,message.getFromUid(),"抱歉,您没有权限");
         boolean self = Objects.equals(uid, message.getFromUid());
         AssertUtil.isTrue(self, "抱歉,您没有权限");
         long between = DateUtil.between(message.getCreateTime(), new Date(), DateUnit.MINUTE);

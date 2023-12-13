@@ -22,13 +22,15 @@ public class HotRoomCache {
 
     /**
      * 获取热门群聊翻页
-     *
-     * @return
+     * 根据游标获取
      */
     public CursorPageBaseResp<Pair<Long, Double>> getRoomCursorPage(CursorPageBaseReq pageBaseReq) {
         return CursorUtils.getCursorPageByRedis(pageBaseReq, RedisKey.getKey(RedisKey.HOT_ROOM_ZET), Long::parseLong);
     }
 
+    /**
+     * 根据更新时间获取热门房间id
+     */
     public Set<ZSetOperations.TypedTuple<String>> getRoomRange(Double hotStart, Double hotEnd) {
         return RedisUtils.zRangeByScoreWithScores(RedisKey.getKey(RedisKey.HOT_ROOM_ZET), hotStart, hotEnd);
     }

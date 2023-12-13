@@ -54,7 +54,9 @@ public class GroupMemberAddListener {
     @Autowired
     private PushService pushService;
 
-
+    /**
+     * 发送给群内人员 邀请信息
+     */
     @Async
     @TransactionalEventListener(classes = GroupMemberAddEvent.class, fallbackExecution = true)
     public void sendAddMsg(GroupMemberAddEvent event) {
@@ -67,6 +69,9 @@ public class GroupMemberAddListener {
         chatService.sendMsg(chatMessageReq, User.UID_SYSTEM);
     }
 
+    /**
+     * 发送给被邀请用户 加入消息
+     */
     @Async
     @TransactionalEventListener(classes = GroupMemberAddEvent.class, fallbackExecution = true)
     public void sendChangePush(GroupMemberAddEvent event) {

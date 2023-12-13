@@ -56,7 +56,7 @@ public class Contact implements Serializable {
     private Date activeTime;
 
     /**
-     * 最后一条消息id
+     * 可读的最后一条消息id(用于踢群后的可读消息的限制)
      */
     @TableField("last_msg_id")
     private Long lastMsgId;

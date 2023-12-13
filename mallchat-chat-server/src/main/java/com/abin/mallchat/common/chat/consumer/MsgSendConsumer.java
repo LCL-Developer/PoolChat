@@ -91,7 +91,7 @@ public class MsgSendConsumer implements RocketMQListener<MsgSendMessageDTO> {
                 RoomFriend roomFriend = roomFriendDao.getByRoomId(room.getId());
                 memberUidList = Arrays.asList(roomFriend.getUid1(), roomFriend.getUid2());
             }
-            //更新所有群成员的会话时间
+            //更新所有群成员的会话时间,没有就去创建窗口
             contactDao.refreshOrCreateActiveTime(room.getId(), memberUidList, message.getId(), message.getCreateTime());
             //推送房间成员
             pushService.sendPushMsg(WSAdapter.buildMsgSend(msgResp), memberUidList);

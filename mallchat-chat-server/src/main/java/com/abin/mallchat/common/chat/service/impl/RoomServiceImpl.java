@@ -12,6 +12,7 @@ import com.abin.mallchat.common.chat.domain.enums.GroupRoleEnum;
 import com.abin.mallchat.common.chat.domain.enums.RoomTypeEnum;
 import com.abin.mallchat.common.chat.service.RoomService;
 import com.abin.mallchat.common.chat.service.adapter.ChatAdapter;
+import com.abin.mallchat.common.common.annotation.RedissonLock;
 import com.abin.mallchat.common.common.domain.enums.NormalOrNoEnum;
 import com.abin.mallchat.common.common.utils.AssertUtil;
 import com.abin.mallchat.common.user.domain.entity.User;
@@ -76,6 +77,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
+    @RedissonLock(key="#uid")
     public RoomGroup createGroupRoom(Long uid) {
         List<GroupMember> selfGroup = groupMemberDao.getSelfGroup(uid);
         AssertUtil.isEmpty(selfGroup, "每个人只能创建一个群");
