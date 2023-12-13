@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+<!--
+    &lt;!&ndash;日志路径 &ndash;&gt;
+    <property name="LOG_PATH" value="/data/logs/poolchat-chat-server"/>
+    <property name="LOG_FILE" value="poolchat-chat-server"/>
+    &lt;!&ndash; 格式化&ndash;&gt;
+    <property name="CONSOLE_LOG_PATTERN"
+              value="|%level|%d{yyyy-MM-dd HH:mm:ss.SSS}|%thread|%X{tid}|uid=%X{uid}|%msg|%X{callChain}%n"/>
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    &lt;!&ndash; 全部日志的配置&ndash;&gt;
+    <appender name="fileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/${LOG_FILE}.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            &lt;!&ndash; 按天生成日志文件 &ndash;&gt;
+            <fileNamePattern>
+                ${LOG_PATH}/archived/${LOG_FILE}.%d{dd-MM-yyyy}.log
+            </fileNamePattern>
+            &lt;!&ndash;保留天数&ndash;&gt;
+            <maxHistory>30</maxHistory>
+            &lt;!&ndash;单个文件的大小&ndash;&gt;
+            <totalSizeCap>5GB</totalSizeCap>
+        </rollingPolicy>
+
+    </appender>
+    &lt;!&ndash; error日志的配置&ndash;&gt;
+    <appender name="fileError" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <file>${LOG_PATH}/${LOG_FILE}.error.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>
+                ${LOG_PATH}/archived/${LOG_FILE}.%d{dd-MM-yyyy}.error.log
+            </fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>2GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <root level="info">
+        &lt;!&ndash;文件输出&ndash;&gt;
+        <appender-ref ref="fileAppender"/>
+        <appender-ref ref="fileError"/>
+        &lt;!&ndash;制台输出&ndash;&gt;
+        <appender-ref ref="STDOUT"/>
+    </root>
+-->
+
+</configuration>

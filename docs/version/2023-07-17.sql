@@ -108,4 +108,4 @@ ALTER TABLE `user` add COLUMN `active_status` INT(11) DEFAULT "2" COMMENT '在�
 ALTER TABLE `user` add KEY `idx_active_status_last_opt_time` (`active_status`,`last_opt_time`) ;
 INSERT INTO `user` (`id`, `name`, `avatar`, `sex`, `open_id`, `last_opt_time`, `ip_info`, `item_id`, `status`, `create_time`, `update_time`) VALUES (1, '系统消息', 'http://mms1.baidu.com/it/u=1979830414,2984779047&fm=253&app=138&f=JPEG&fmt=auto&q=75?w=500&h=500', NULL, '0', '2023-07-01 11:58:24.605', NULL, NULL, 0, '2023-07-01 11:58:24.605', '2023-07-01 12:02:56.900');
 insert INTO `room`(`id`,`type`,`hot_flag`) values (1,1,1);
-insert INTO `room_group`(`id`,`room_id`,`name`,`avatar`) values (1,1,'抹茶全员群','https://mallchat.cn/assets/logo-e81cd252.jpeg');
+insert INTO `room_group`(`id`,`room_id`,`name`,`avatar`) values (1,1,'抹茶全员群','https://poolchat.cn/assets/logo-e81cd252.jpeg');
